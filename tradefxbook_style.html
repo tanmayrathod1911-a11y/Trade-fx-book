@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TradeFXBook — Trading Journal</title>
+<style>
+:root{--blue:#145cff;--cyan:#36cfff;--ink:#111827;--muted:#6b7280;--line:#e8eaf0;--bg:#fff;--soft:#f7f8fb;--green:#13a66b;--red:#e53935;--yellow:#f6b800;--radius:14px}
+*{box-sizing:border-box}html,body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff}button,input,select{font:inherit}
+button{cursor:pointer}.app{min-height:100vh}.landing{min-height:100vh;background:#02061e;color:#fff;position:relative;overflow:hidden}
+.landing:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(47,93,166,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(47,93,166,.16) 1px,transparent 1px);background-size:58px 58px;mask-image:linear-gradient(to bottom,#000,transparent 90%)}
+.hero{position:relative;max-width:900px;margin:auto;text-align:center;padding:70px 24px 90px}.brand{font-size:32px;font-weight:900;letter-spacing:-1.5px}.brand b{color:#fff}.brand i{font-style:normal;color:#31c7ff}.brand em{font-style:normal;color:#aaa}.pill{display:inline-flex;gap:10px;border:1px solid #1876ff;border-radius:30px;padding:9px 20px;margin-top:60px;color:#eaf3ff;letter-spacing:2px;font-size:14px}.hero h1{font-size:58px;line-height:1.02;margin:28px auto 18px;max-width:760px;letter-spacing:-2.5px}.hero h1 span{color:#46caff;text-shadow:0 0 15px rgba(55,196,255,.25)}.hero p{font-size:21px;color:#e2e5ef;max-width:690px;margin:0 auto 34px;line-height:1.5}.cta{border:0;border-radius:32px;padding:16px 34px;background:linear-gradient(135deg,#1561ff,#1b83ef);color:white;font-weight:800;font-size:18px;box-shadow:0 12px 35px rgba(24,93,255,.35)}.avatars{display:flex;justify-content:center;align-items:center;margin:34px 0 10px}.avatar{width:48px;height:48px;border-radius:50%;border:3px solid #05081c;margin-left:-8px;background:linear-gradient(135deg,#111827,#60a5fa);display:grid;place-items:center;font-weight:800}.more{width:50px;height:50px;border-radius:50%;border:2px dashed #2286ff;display:grid;place-items:center;color:#54baff;margin-left:-8px}.trusted{font-size:17px;color:#ddd}.trusted strong{color:#fff}.stars{color:#ffd21c}.dash-shot{margin:36px auto 0;max-width:820px;border:1px solid #1e3156;border-radius:18px;background:#03050d;box-shadow:0 25px 80px rgba(0,0,0,.55);padding:12px;text-align:left}.fake-dash{height:380px;border-radius:12px;background:#05070c;display:grid;grid-template-columns:150px 1fr;overflow:hidden}.fake-side{border-right:1px solid #151d2e;padding:20px 12px}.fake-side div{padding:11px 8px;color:#71809b;font-size:12px}.fake-side .active{background:#101d39;color:#fff;border-radius:7px}.fake-main{padding:18px}.fake-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.fake-kpi{background:#090d17;border:1px solid #18243a;border-radius:10px;padding:12px}.fake-kpi small{color:#74809a}.fake-kpi strong{display:block;color:#27bfff;font-size:17px;margin-top:5px}.fake-chart{height:180px;margin-top:16px;border:1px solid #17243a;border-radius:10px;position:relative;overflow:hidden}.fake-chart svg{width:100%;height:100%}
+.shell{display:none;min-height:100vh;background:#fff}.topbar{height:62px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;background:rgba(255,255,255,.96);z-index:10}.mini-brand{font-weight:900;font-size:19px}.mini-brand span{color:#0c6cff}.top-actions{display:flex;gap:8px;align-items:center}.iconbtn{border:1px solid var(--line);background:#fff;width:36px;height:36px;border-radius:10px}.layout{display:grid;grid-template-columns:72px 1fr;min-height:calc(100vh - 62px)}.sidebar{border-right:1px solid var(--line);padding:14px 10px;background:#fff}.nav{display:flex;flex-direction:column;gap:8px;align-items:center}.nav button{width:44px;height:44px;border:0;background:transparent;border-radius:12px;color:#596273;font-size:18px}.nav button.active{background:#eef4ff;color:#104fe0}.content{max-width:980px;width:100%;margin:auto;padding:22px 28px 80px}.page-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.page-title h2{margin:0;font-size:18px}.page-title small{color:var(--muted)}.profile{border:1px solid #e7eaf0;border-radius:12px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;background:#fff}.profile-left{display:flex;gap:12px;align-items:center}.rocket{width:34px;height:34px;border-radius:9px;background:#f2f6ff;display:grid;place-items:center}.profile strong{font-size:12px}.profile p{margin:3px 0 0;color:#737b89;font-size:11px}.primary{border:0;background:#1559ee;color:#fff;border-radius:8px;padding:9px 15px;font-size:12px;font-weight:700}.close{border:0;background:none;color:#777;font-size:18px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:15px}.kcard{min-height:92px}.label{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:#747b88}.value{font-size:21px;font-weight:800;margin-top:7px}.sub{font-size:10px;color:#8b929f;margin-top:4px}.section{border:1px solid var(--line);border-radius:14px;background:#fff;margin-top:14px;padding:15px}.section h3{font-size:12px;margin:0 0 13px}.toolbar{display:flex;gap:7px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:#fff;border-radius:7px;padding:7px 10px;font-size:10px}.chip.active{background:#1258ed;color:#fff;border-color:#1258ed}.empty{min-height:190px;display:grid;place-items:center;text-align:center;color:#555}.empty .big{font-size:32px;color:#5b6472}.chartbox{height:235px;position:relative}.chartbox svg{width:100%;height:100%}.stats-grid{display:grid;grid-template-columns:repeat(2,1fr)}.stat{padding:12px;border:1px solid var(--line);min-height:82px}.stat .value{font-size:20px}.redline{height:3px;background:#e10000;margin-top:6px;border-radius:3px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{min-height:42px;border:1px solid #edf0f4;border-radius:7px;padding:6px;font-size:9px}.day.head{border:0;font-weight:800;text-align:center}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.table{width:100%;border-collapse:collapse;font-size:10px}.table th,.table td{padding:11px 8px;border-bottom:1px solid #eef0f3;text-align:left}.table th{font-size:9px;color:#6d7480}.tabs{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-bottom:10px}.tabs button{border:0;border-right:1px solid var(--line);background:#fff;padding:9px;font-size:10px}.tabs button:last-child{border:0}.searchrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.input{border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:10px;color:#777;background:#fff}.notice{background:#fff9e9;border:1px solid #f0d27b;border-radius:8px;padding:11px;font-size:10px;color:#8a6500}.event{display:grid;grid-template-columns:65px 45px 55px 1fr 70px 70px 70px;gap:8px;align-items:center;padding:13px 4px;border-bottom:1px solid #eef0f3;font-size:10px}.badge{display:inline-block;padding:4px 7px;border-radius:12px;font-size:8px;font-weight:800}.high{background:#ffe8e8;color:#c52222}.med{background:#fff3cf;color:#946900}.low{background:#e7f7ea;color:#17753a}.progress{height:5px;background:linear-gradient(90deg,#1559ee 50%,#e10000 50%);border-radius:5px}.stats-table .row{display:flex;justify-content:space-between;padding:8px 2px;border-bottom:1px solid #f0f1f3;font-size:10px}.bottom-help{position:fixed;left:18px;bottom:18px;width:38px;height:38px;border-radius:12px;background:#0c5af5;color:#fff;display:grid;place-items:center;box-shadow:0 5px 18px #aac3ff}.footer-news{position:fixed;left:72px;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:7px 20px;font-size:9px}.hidden{display:none!important}
+@media(max-width:800px){.hero h1{font-size:42px}.hero p{font-size:17px}.layout{grid-template-columns:58px 1fr}.sidebar{padding:12px 6px}.nav button{width:40px}.content{padding:18px 12px 70px}.cards{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.footer-news{left:58px}.event{grid-template-columns:52px 38px 45px 1fr 55px}.event>*:nth-child(n+6){display:none}}
+@media(max-width:520px){.topbar{padding:0 12px}.content{padding:15px 9px 65px}.profile{align-items:flex-start}.profile .primary{display:none}.cards{grid-template-columns:1fr 1fr}.stats-grid{grid-template-columns:1fr}.hero{padding-top:50px}.pill{font-size:10px}.fake-dash{grid-template-columns:85px 1fr}.fake-side{padding:12px 5px}.fake-main{padding:10px}.fake-kpis{grid-template-columns:1fr 1fr}.dash-shot{padding:7px}}
+
+.grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-grid label{font-size:9px;color:#667085;font-weight:700}.form-grid input,.form-grid select{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:8px;padding:9px;background:#fff;color:#111;font-size:10px}.check{font-size:10px;padding:10px 0;border-bottom:1px solid #f0f1f3}.check span{color:#12a66a;font-weight:900;margin-right:8px}.check.warn span{color:#d99200}.bt-chart{height:280px}.bt-chart canvas{width:100%;height:100%}.mini-bar{display:grid;grid-template-columns:55px 1fr 25px;align-items:center;gap:8px;font-size:10px;margin:12px 0}.mini-bar i{height:7px;background:#1559ee;border-radius:5px;display:block}.mini-bar:nth-child(3) i{background:#f04438}.rowline{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid #f0f1f3;font-size:10px}.mentor-card{background:#f5f8ff;border:1px solid #d9e5ff;border-radius:10px;padding:13px;font-size:10px;line-height:1.55}.mentor-card p{color:#536071}.ai-fab{position:fixed;right:20px;bottom:22px;width:50px;height:50px;border:0;border-radius:50%;background:linear-gradient(135deg,#1559ee,#19a9ff);color:#fff;font-size:21px;box-shadow:0 8px 25px #a9c9ff;z-index:50}.ai-mentor{position:fixed;right:20px;bottom:82px;width:340px;height:470px;background:#fff;border:1px solid #dfe4ee;border-radius:16px;box-shadow:0 15px 50px rgba(16,24,40,.2);z-index:49;display:flex;flex-direction:column;overflow:hidden}.ai-head{background:#081a42;color:#fff;padding:13px 14px;display:flex;justify-content:space-between;align-items:center}.ai-head small{display:block;color:#a9c8ff;font-size:8px;margin-top:2px}.ai-head button{background:none;border:0;color:#fff;font-size:18px}.ai-messages{flex:1;overflow:auto;padding:12px;background:#f7f9fc}.ai-msg{max-width:90%;padding:10px 11px;border-radius:11px;margin-bottom:8px;font-size:10px;line-height:1.5}.ai-msg.bot{background:#fff;border:1px solid #e7eaf0}.ai-msg.user{margin-left:auto;background:#1559ee;color:#fff}.ai-suggestions{display:flex;gap:5px;flex-wrap:wrap;padding:8px;border-top:1px solid #edf0f4}.ai-suggestions button{border:1px solid #dfe4ee;background:#fff;border-radius:20px;padding:6px 8px;font-size:9px}.ai-input{display:flex;border-top:1px solid #e5e8ef;padding:8px;gap:6px}.ai-input input{flex:1;border:1px solid #dfe4ee;border-radius:9px;padding:9px;font-size:10px;outline:0}.ai-input button{border:0;background:#1559ee;color:#fff;border-radius:9px;width:38px}.hidden.ai-mentor{display:none!important}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}.ai-mentor{right:10px;bottom:72px;width:calc(100vw - 20px);max-width:360px}.ai-fab{right:12px}.form-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="landing" class="landing">
+ <div class="hero">
+  <div class="brand">TFB&nbsp; Trade<span style="color:#fff">FX</span><em>Book</em></div>
+  <div class="pill">🏆 THE TRADING JOURNAL THAT WORKS FOR YOU</div>
+  <h1>Track Trades. <span>Analyze</span><br>PNL. Master Markets.</h1>
+  <p>Sync your trades, journal every setup, backtest ideas, and let AI do the analysis.</p>
+  <button class="cta" onclick="openApp()">Get Started&nbsp; →</button>
+  <div class="avatars"><div class="avatar">T</div><div class="avatar">F</div><div class="avatar">X</div><div class="avatar">B</div><div class="more">+MORE</div></div>
+  <div class="trusted">Trusted by <strong>2,000+</strong> traders&nbsp; <span class="stars">★★★★★</span></div>
+  <div class="dash-shot"><div class="fake-dash"><div class="fake-side"><div class="active">▣ Dashboard</div><div>▤ Journal</div><div>◫ Analysis</div><div>⌁ Market</div><div>♧ Community</div></div><div class="fake-main"><div class="fake-kpis"><div class="fake-kpi"><small>TOTAL P&L</small><strong>+$3618.50</strong></div><div class="fake-kpi"><small>UNREALIZED</small><strong>+$3567.21</strong></div><div class="fake-kpi"><small>REALIZED</small><strong>$51.29</strong></div><div class="fake-kpi"><small>WIN RATE</small><strong>67%</strong></div></div><div class="fake-chart"><svg viewBox="0 0 700 180" preserveAspectRatio="none"><path d="M0 160 L130 160 L230 160 L340 160 L410 155 L470 148 L510 80 L555 105 L600 40 L700 22" fill="none" stroke="#17a9ff" stroke-width="3"/></svg></div></div></div></div>
+ </div>
+</div>
+
+<div id="shell" class="shell">
+<header class="topbar"><div class="mini-brand">T<span>FB</span> <span>TradeFXBook</span></div><div class="top-actions"><button class="iconbtn">☼</button><button class="iconbtn">＋</button><button class="iconbtn">♧</button><button class="iconbtn">T</button></div></header>
+<div class="layout">
+<aside class="sidebar"><nav class="nav">
+<button data-page="dashboard" class="active" title="Dashboard">▣</button>
+<button data-page="trades" title="Trades">▤</button>
+<button data-page="journal" title="Journal">▥</button>
+<button data-page="analysis" title="Analysis">▥</button>
+<button data-page="backtest" title="Backtesting">◈</button><button data-page="market" title="Market">⌁</button>
+<button title="Community">♧</button><button title="Traders">♙</button><button title="Settings">⚙</button>
+</nav></aside>
+<main class="content">
+
+<section id="dashboard" class="page">
+<div class="page-title"><div><h2>Dashboard</h2><small>Wed, Sep 23</small></div></div>
+<div class="profile"><div class="profile-left"><div class="rocket">🚀</div><div><strong>Complete Your Trading Profile</strong><p>Set up your trading rules and preferences for better AI insights.</p></div></div><div><button class="primary">Complete Setup</button><button class="close">×</button></div></div>
+<div class="cards"><div class="card kcard"><div class="label">Total P&L</div><div class="value">$0.00</div><div class="sub">↔ Syncing</div></div><div class="card kcard"><div class="label">Unrealized</div><div class="value">$0.00</div><div class="sub">Syncing positions</div></div><div class="card kcard"><div class="label">Realized</div><div class="value">$0.00</div><div class="sub">Syncing trades</div></div><div class="card kcard"><div class="label">Win Rate</div><div class="value">—</div><div class="sub">No data yet</div></div></div>
+<div class="section"><h3>⌁ PERFORMANCE</h3><div class="toolbar" style="justify-content:flex-end"><button class="chip">1D</button><button class="chip">1W</button><button class="chip active">1M</button><button class="chip">3M</button><button class="chip">ALL</button></div><div class="empty"><div><div class="big">〽</div><strong>Loading 1M performance...</strong><div style="font-size:10px;margin-top:5px">Your totals and chart will update when the selected period is ready.</div></div></div></div>
+<div class="section"><h3>Monthly P&L <span style="float:right;color:#777">September 2026　‹　›</span></h3><div class="calendar"><div class="day head">M</div><div class="day head">T</div><div class="day head">W</div><div class="day head">T</div><div class="day head">F</div><div class="day head">S</div><div class="day head">S</div><script>for(let i=1;i<=30;i++)document.write('<div class="day">'+i+'</div>')
+function toggleAI(){document.getElementById('aiMentor').classList.toggle('hidden')}
+function openAIWith(q){document.getElementById('aiMentor').classList.remove('hidden');askAI(q)}
+function addAI(text,who='bot'){const box=document.getElementById('aiMessages');const d=document.createElement('div');d.className='ai-msg '+(who==='user'?'user':'bot');d.innerHTML=who==='user'?text:'<b>TFB AI</b><br>'+text;box.appendChild(d);box.scrollTop=box.scrollHeight}
+function askAI(q){addAI(q,'user');setTimeout(()=>{let a='I would review the actual trade data before making a conclusion. Start with sample size, expectancy, drawdown, losing streaks, costs, and whether the rules were tested on unseen data.';if(/risk/i.test(q))a='Risk check: keep position size tied to a fixed percentage of account equity, define the invalidation point before entry, and check that a normal losing streak stays within your drawdown limit. I can calculate this from your inputs.';if(/backtest/i.test(q))a='Backtest review: the displayed simulation has positive expectancy, but it is only a demonstration. Validate it with out-of-sample data, realistic spread/slippage, and at least 100 trades before drawing conclusions.';if(/mistake|pattern/i.test(q))a='Pattern review: look for repeated entries after losses, rule changes, oversized positions, time-of-day clustering, and setups that perform differently across market regimes. Your journal should capture these fields.';if(/mentor/i.test(q))a='Mentor mode: I can act as a structured review partner — explain what the data says, point out uncertainty, and turn repeated mistakes into checklist rules. I will not pretend to know future market direction.';addAI(a)},350)}
+function sendAI(){const i=document.getElementById('aiInput');const q=i.value.trim();if(!q)return;i.value='';askAI(q)}
+function runBacktest(){const risk=parseFloat(document.getElementById('btRisk').value)||.5;const bal=parseFloat(document.getElementById('btBalance').value)||5000;const factor=risk/.5;const pnl=Math.round(1260*factor);document.getElementById('btPnl').textContent=(pnl>=0?'+$':'-$')+Math.abs(pnl).toLocaleString();document.getElementById('btWin').textContent=(58+Math.min(8,Math.max(-8,(factor-1)*2))).toFixed(0)+'%';document.getElementById('btPF').textContent=(1.72*factor).toFixed(2);document.getElementById('btDD').textContent='-'+(6.4*factor).toFixed(1)+'%';drawBT();document.getElementById('btMentor').innerHTML='<b>Updated review</b><p>Simulation recalculated using '+risk+'% risk on a $'+bal.toLocaleString()+' starting balance. Treat these numbers as illustrative until you connect real historical data and model trading costs.</p><button class="chip" onclick="openAIWith(\\'Review the updated backtest\\')">Ask AI →</button>'}
+function drawBT(){const c=document.getElementById('btCanvas');if(!c)return;const r=c.getBoundingClientRect(),d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);let w=r.width,h=r.height; x.clearRect(0,0,w,h);x.strokeStyle='#e8eaf0';x.lineWidth=1;for(let i=1;i<5;i++){x.beginPath();x.moveTo(0,h*i/5);x.lineTo(w,h*i/5);x.stroke()}let y=h*.78;x.beginPath();x.moveTo(0,y);for(let i=0;i<=100;i++){let v=(Math.sin(i*.33)*.05+Math.random()*.035+0.012);y=Math.max(18,Math.min(h-18,y-v*h*.85+(Math.random()-.48)*3));x.lineTo(w*i/100,y)}x.strokeStyle='#1559ee';x.lineWidth=2.5;x.stroke()}
+window.addEventListener('resize',drawBT);document.querySelector('[data-page="backtest"]')?.addEventListener('click',()=>setTimeout(drawBT,50));
+</script></div></div>
+<div class="two"><div class="section"><h3>Open Positions</h3><div class="empty">Syncing positions</div><button class="chip" style="width:100%">View All Positions →</button></div><div class="section"><h3>Recent Activity</h3><div class="empty">Syncing recent activity</div><button class="chip" style="width:100%">View All Activity →</button></div></div>
+<div class="section"><h3>Top Performers</h3><div class="empty">Syncing performance data</div></div>
+</section>
+
+<section id="trades" class="page hidden">
+<div class="page-title"><div><h2>Trades</h2><small>Wed, Sep 23</small></div><div><button class="primary">Connect MT4/MT5</button> <button class="primary">＋ Add Trade</button></div></div>
+<div class="profile"><div class="profile-left"><div class="rocket">🚀</div><div><strong>Complete Your Trading Profile</strong><p>Your trading rules are ready for AI-powered insights and personalized reports.</p></div></div><button class="primary">Complete Setup</button></div>
+<div class="section"><h3>Trade History <span style="color:#777;font-weight:400">No trades in the last 30 days</span><button class="chip" style="float:right">⚱ Filters</button></h3>
+<div class="notice">Free plan loads your last 15 trades. Upgrade to Pro to unlock full history and longer timeframes.</div>
+<table class="table"><thead><tr><th>OPEN / CLOSE</th><th>SYMBOL</th><th>TYPE</th><th>ENTRY</th><th>EXIT</th><th>SIZE</th><th>P&L</th><th>SOURCE</th></tr></thead></table>
+<div class="empty"><div><div class="big">🔗</div><strong>No account connected</strong><div style="font-size:10px;margin-top:5px">Connect your MT4/MT5 broker account to sync trades automatically</div></div></div></div>
+</section>
+
+<section id="journal" class="page hidden">
+<div class="page-title"><div><h2>Journal</h2><small>Wed, Sep 23</small></div></div>
+<div class="profile"><div class="profile-left"><div class="rocket">🚀</div><div><strong>Complete Your Trading Profile</strong><p>Set up your trading rules and preferences for better AI insights.</p></div></div><button class="primary">Complete Setup</button></div>
+<div class="section"><h3>Trade Journal <span style="float:right" class="badge low">● Live</span></h3><small>0 Journaled in period</small>
+<div class="tabs"><button>All　0</button><button>Journaled　0</button><button>Pending　<span style="color:#f0a400">0</span></button><button>Legacy　—</button></div>
+<div class="searchrow"><input class="input" placeholder="⌕ Search symbol..."><select class="input"><option>Last 30 Days</option></select></div><div class="searchrow" style="margin-top:7px"><select class="input"><option>⇅ Date</option></select></div>
+<div class="empty">No trades in the last 30 days<br><button class="chip">View All Time</button></div></div>
+</section>
+
+<section id="analysis" class="page hidden">
+<div class="page-title"><div><h2>Analysis</h2><small>Wed, Sep 23</small></div></div>
+<h2 style="font-size:17px">⌁ Performance Analytics</h2>
+<div class="toolbar" style="margin:15px 0"><button class="chip">Today</button><button class="chip">7 Days</button><button class="chip active">30 Days</button><button class="chip">3 Months</button><button class="chip">1 Year</button><button class="chip">All Time</button><button class="chip active">All Trades</button><button class="chip">Winners</button><button class="chip">× Losers</button></div>
+<div class="section" style="padding:0"><div class="stats-grid"><div class="stat"><div class="label">Total P&L</div><div class="value">$0.00</div><div class="sub">From 0 closed trades</div></div><div class="stat"><div class="label">Win Rate</div><div class="value">0.0%</div><div class="redline"></div><div class="sub">0 wins · 0 losses</div></div><div class="stat"><div class="label">Profit Factor</div><div class="value">0.00</div><div class="sub">△ Needs work</div></div><div class="stat"><div class="label">Expectancy</div><div class="value">$0.00</div><div class="sub">Expected profit per trade</div></div></div></div>
+<div class="section"><h3>⌁ Equity Curve <span style="float:right"><button class="chip active">Equity</button> <button class="chip">Drawdown</button></span></h3><div class="empty" style="min-height:190px"><div><div class="big">〽</div>Complete trades to see your equity curve</div></div><div class="stats-grid"><div class="stat"><b>AVG WINNER</b><div>$0.00</div></div><div class="stat"><b>AVG LOSER</b><div>-$0.00</div></div><div class="stat"><b>BEST TRADE</b><div>$0.00</div></div><div class="stat"><b>WORST TRADE</b><div>$0.00</div></div></div></div>
+<div class="section"><h3>◉ Win / Loss Distribution</h3><div class="stats-grid"><div class="stat"><b>GROSS PROFIT</b><div>$0.00</div></div><div class="stat"><b>GROSS LOSS</b><div>-$0.00</div></div><div class="stat"><b>NET RESULT</b><div>$0.00</div></div><div class="stat"><b>0 winners · 0 losers</b></div></div></div>
+<div class="section"><h3>⇆ Long vs Short</h3><div class="progress"></div><p style="font-size:10px">▣　Long <span style="float:right">0 trades · 0.0%　$0.00</span></p><p style="font-size:10px">■　Short <span style="float:right">0 trades · 0.0%　$0.00</span></p></div>
+<div class="section"><h3>▣ Day Performance</h3><div class="stats-table"><script>["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(d=>document.write('<div class="row"><span>'+d+'</span><span>—</span></div>'))
+function toggleAI(){document.getElementById('aiMentor').classList.toggle('hidden')}
+function openAIWith(q){document.getElementById('aiMentor').classList.remove('hidden');askAI(q)}
+function addAI(text,who='bot'){const box=document.getElementById('aiMessages');const d=document.createElement('div');d.className='ai-msg '+(who==='user'?'user':'bot');d.innerHTML=who==='user'?text:'<b>TFB AI</b><br>'+text;box.appendChild(d);box.scrollTop=box.scrollHeight}
+function askAI(q){addAI(q,'user');setTimeout(()=>{let a='I would review the actual trade data before making a conclusion. Start with sample size, expectancy, drawdown, losing streaks, costs, and whether the rules were tested on unseen data.';if(/risk/i.test(q))a='Risk check: keep position size tied to a fixed percentage of account equity, define the invalidation point before entry, and check that a normal losing streak stays within your drawdown limit. I can calculate this from your inputs.';if(/backtest/i.test(q))a='Backtest review: the displayed simulation has positive expectancy, but it is only a demonstration. Validate it with out-of-sample data, realistic spread/slippage, and at least 100 trades before drawing conclusions.';if(/mistake|pattern/i.test(q))a='Pattern review: look for repeated entries after losses, rule changes, oversized positions, time-of-day clustering, and setups that perform differently across market regimes. Your journal should capture these fields.';if(/mentor/i.test(q))a='Mentor mode: I can act as a structured review partner — explain what the data says, point out uncertainty, and turn repeated mistakes into checklist rules. I will not pretend to know future market direction.';addAI(a)},350)}
+function sendAI(){const i=document.getElementById('aiInput');const q=i.value.trim();if(!q)return;i.value='';askAI(q)}
+function runBacktest(){const risk=parseFloat(document.getElementById('btRisk').value)||.5;const bal=parseFloat(document.getElementById('btBalance').value)||5000;const factor=risk/.5;const pnl=Math.round(1260*factor);document.getElementById('btPnl').textContent=(pnl>=0?'+$':'-$')+Math.abs(pnl).toLocaleString();document.getElementById('btWin').textContent=(58+Math.min(8,Math.max(-8,(factor-1)*2))).toFixed(0)+'%';document.getElementById('btPF').textContent=(1.72*factor).toFixed(2);document.getElementById('btDD').textContent='-'+(6.4*factor).toFixed(1)+'%';drawBT();document.getElementById('btMentor').innerHTML='<b>Updated review</b><p>Simulation recalculated using '+risk+'% risk on a $'+bal.toLocaleString()+' starting balance. Treat these numbers as illustrative until you connect real historical data and model trading costs.</p><button class="chip" onclick="openAIWith(\\'Review the updated backtest\\')">Ask AI →</button>'}
+function drawBT(){const c=document.getElementById('btCanvas');if(!c)return;const r=c.getBoundingClientRect(),d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);let w=r.width,h=r.height; x.clearRect(0,0,w,h);x.strokeStyle='#e8eaf0';x.lineWidth=1;for(let i=1;i<5;i++){x.beginPath();x.moveTo(0,h*i/5);x.lineTo(w,h*i/5);x.stroke()}let y=h*.78;x.beginPath();x.moveTo(0,y);for(let i=0;i<=100;i++){let v=(Math.sin(i*.33)*.05+Math.random()*.035+0.012);y=Math.max(18,Math.min(h-18,y-v*h*.85+(Math.random()-.48)*3));x.lineTo(w*i/100,y)}x.strokeStyle='#1559ee';x.lineWidth=2.5;x.stroke()}
+window.addEventListener('resize',drawBT);document.querySelector('[data-page="backtest"]')?.addEventListener('click',()=>setTimeout(drawBT,50));
+</script></div></div>
+<div class="section"><h3>♙ Top Symbols</h3><div class="empty" style="min-height:100px">No symbol data yet</div></div>
+<div class="section"><h3>▣ Trading Calendar <span style="float:right">‹　 September 2026　 ›</span></h3><div class="calendar"><div class="day head">MON</div><div class="day head">TUE</div><div class="day head">WED</div><div class="day head">THU</div><div class="day head">FRI</div><div class="day head">SAT</div><div class="day head">SUN</div><script>for(let i=1;i<=30;i++)document.write('<div class="day">'+i+'</div>')
+function toggleAI(){document.getElementById('aiMentor').classList.toggle('hidden')}
+function openAIWith(q){document.getElementById('aiMentor').classList.remove('hidden');askAI(q)}
+function addAI(text,who='bot'){const box=document.getElementById('aiMessages');const d=document.createElement('div');d.className='ai-msg '+(who==='user'?'user':'bot');d.innerHTML=who==='user'?text:'<b>TFB AI</b><br>'+text;box.appendChild(d);box.scrollTop=box.scrollHeight}
+function askAI(q){addAI(q,'user');setTimeout(()=>{let a='I would review the actual trade data before making a conclusion. Start with sample size, expectancy, drawdown, losing streaks, costs, and whether the rules were tested on unseen data.';if(/risk/i.test(q))a='Risk check: keep position size tied to a fixed percentage of account equity, define the invalidation point before entry, and check that a normal losing streak stays within your drawdown limit. I can calculate this from your inputs.';if(/backtest/i.test(q))a='Backtest review: the displayed simulation has positive expectancy, but it is only a demonstration. Validate it with out-of-sample data, realistic spread/slippage, and at least 100 trades before drawing conclusions.';if(/mistake|pattern/i.test(q))a='Pattern review: look for repeated entries after losses, rule changes, oversized positions, time-of-day clustering, and setups that perform differently across market regimes. Your journal should capture these fields.';if(/mentor/i.test(q))a='Mentor mode: I can act as a structured review partner — explain what the data says, point out uncertainty, and turn repeated mistakes into checklist rules. I will not pretend to know future market direction.';addAI(a)},350)}
+function sendAI(){const i=document.getElementById('aiInput');const q=i.value.trim();if(!q)return;i.value='';askAI(q)}
+function runBacktest(){const risk=parseFloat(document.getElementById('btRisk').value)||.5;const bal=parseFloat(document.getElementById('btBalance').value)||5000;const factor=risk/.5;const pnl=Math.round(1260*factor);document.getElementById('btPnl').textContent=(pnl>=0?'+$':'-$')+Math.abs(pnl).toLocaleString();document.getElementById('btWin').textContent=(58+Math.min(8,Math.max(-8,(factor-1)*2))).toFixed(0)+'%';document.getElementById('btPF').textContent=(1.72*factor).toFixed(2);document.getElementById('btDD').textContent='-'+(6.4*factor).toFixed(1)+'%';drawBT();document.getElementById('btMentor').innerHTML='<b>Updated review</b><p>Simulation recalculated using '+risk+'% risk on a $'+bal.toLocaleString()+' starting balance. Treat these numbers as illustrative until you connect real historical data and model trading costs.</p><button class="chip" onclick="openAIWith(\\'Review the updated backtest\\')">Ask AI →</button>'}
+function drawBT(){const c=document.getElementById('btCanvas');if(!c)return;const r=c.getBoundingClientRect(),d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);let w=r.width,h=r.height; x.clearRect(0,0,w,h);x.strokeStyle='#e8eaf0';x.lineWidth=1;for(let i=1;i<5;i++){x.beginPath();x.moveTo(0,h*i/5);x.lineTo(w,h*i/5);x.stroke()}let y=h*.78;x.beginPath();x.moveTo(0,y);for(let i=0;i<=100;i++){let v=(Math.sin(i*.33)*.05+Math.random()*.035+0.012);y=Math.max(18,Math.min(h-18,y-v*h*.85+(Math.random()-.48)*3));x.lineTo(w*i/100,y)}x.strokeStyle='#1559ee';x.lineWidth=2.5;x.stroke()}
+window.addEventListener('resize',drawBT);document.querySelector('[data-page="backtest"]')?.addEventListener('click',()=>setTimeout(drawBT,50));
+</script></div><div style="font-size:9px;margin-top:12px">■ Profitable Day　 <span style="color:#d00">■</span> Losing Day　 □ No Trades</div></div>
+<div class="section"><h3>▣ Day Trades</h3><div class="empty">▣<br>Click on a day with trades to view details</div></div>
+<div class="section"><h3>▣ Your Stats <span style="float:right" class="badge">30 DAYS</span></h3><div class="stats-grid"><div class="stat"><b>BEST MONTH</b><div>—</div><small>No data</small></div><div class="stat"><b>WORST MONTH</b><div>—</div><small>No data</small></div><div class="stat"><b>AVERAGE</b><div>$0.00</div><small>per Month</small></div></div>
+<div class="stats-table" id="statsRows"></div></div>
+</section>
+
+<section id="market" class="page hidden">
+<div class="page-title"><div><h2>Market</h2><small>Wed, Sep 23</small></div></div>
+<div class="profile"><div class="profile-left"><div class="rocket">🚀</div><div><strong>Complete Your Trading Profile</strong><p>Your trading rules are ready for AI-powered insights and personalized reports.</p></div></div><button class="primary">Complete Setup</button></div>
+<h1 style="font-size:22px;margin:28px 0 4px">Economic Calendar</h1><p style="font-size:11px;color:#777">Track high-impact economic events and news that move the markets</p>
+<div class="notice" style="margin:20px 0">ⓘ Free plan: Limited to today's US events (High & Medium impact). <u>Upgrade to Pro</u> for full access.</div>
+<div class="toolbar"><button class="chip">Upcoming</button><button class="chip active">Today</button><button class="chip">Tomorrow</button><button class="chip">This Week</button><button class="chip">All</button><button class="chip">🔴 High</button><button class="chip">🟡 Med</button><button class="chip">🟢 Low</button></div>
+<div class="section"><div style="font-size:10px;color:#777;margin-bottom:10px">🇺🇸 US Only　⌕ Search events...　 ↻</div><h2 style="font-size:18px">Today <span style="float:right;font-size:10px">7 EVENTS</span></h2>
+<div class="event"><b>01:45 PM</b><span>🇺🇸 USD</span><span class="badge high">● HIGH</span><span>S&P Global Manufacturing PMI (Sep)</span><span>ACTUAL<br><b>11h left</b></span><span>FORECAST<br>—</span><span>PREVIOUS<br>53.90</span></div>
+<div class="event"><b>01:45 PM</b><span>🇺🇸 USD</span><span class="badge high">● HIGH</span><span>S&P Global Services PMI (Sep)</span><span>ACTUAL<br><b>11h left</b></span><span>FORECAST<br>—</span><span>PREVIOUS<br>56.50</span></div>
+<div class="event"><b>01:45 PM</b><span>🇺🇸 USD</span><span class="badge med">● MED</span><span>S&P Global Composite PMI (Sep)</span><span>ACTUAL<br><b>11h left</b></span><span>FORECAST<br>—</span><span>PREVIOUS<br>56.00</span></div>
+<div class="event"><b>02:05 PM</b><span>🇺🇸 USD</span><span class="badge med">● MED</span><span>Fed Vice Chair — speech</span><span>ACTUAL<br><b>11h left</b></span><span>FORECAST<br>—</span><span>PREVIOUS<br>—</span></div>
+<div class="event"><b>02:30 PM</b><span>🇺🇸 USD</span><span class="badge high">● HIGH</span><span>Crude Oil Inventories</span><span>ACTUAL<br><b>12h left</b></span><span>FORECAST<br>—</span><span>PREVIOUS<br>-0.64</span></div>
+<div class="event"><b>02:30 PM</b><span>🇺🇸 USD</span><span class="badge med">● MED</span><span>Cushing Crude Inventories</span><span>ACTUAL<br><b>12h left</b></span><span>FORECAST<br>—</span><span>PREVIOUS<br>-0.34</span></div>
+<div class="event"><b>05:00 PM</b><span>🇺🇸 USD</span><span class="badge med">● MED</span><span>5-Year Note Auction</span><span>ACTUAL<br><b>14h left</b></span><span>FORECAST<br>—</span><span>PREVIOUS<br>4.39</span></div>
+<div class="empty" style="min-height:80px">⌄ Load More Events</div></div>
+</section>
+
+</main></div>
+
+<!-- AI Mentor -->
+<div id="aiMentor" class="ai-mentor hidden">
+  <div class="ai-head"><div><b>✦ TFB AI Mentor</b><small>Trading coach • data-based</small></div><button onclick="toggleAI()">×</button></div>
+  <div id="aiMessages" class="ai-messages">
+    <div class="ai-msg bot"><b>TFB AI</b><br>Hi! I can review your journal, backtest results, risk settings, and trading statistics. I’ll explain the evidence and risks rather than make trades for you.</div>
+  </div>
+  <div class="ai-suggestions">
+    <button onclick="askAI('Review my backtest')">Review backtest</button>
+    <button onclick="askAI('Check my risk')">Check risk</button>
+    <button onclick="askAI('Find my mistakes')">Find patterns</button>
+  </div>
+  <div class="ai-input"><input id="aiInput" placeholder="Ask your mentor..." onkeydown="if(event.key==='Enter')sendAI()"><button onclick="sendAI()">➤</button></div>
+</div>
+<button class="ai-fab" onclick="toggleAI()">✦</button>
+
+<section id="backtest" class="content page hidden">
+  <div class="page-title">
+    <div><h2>Backtesting Lab</h2><small>Build, test and review a strategy</small></div>
+    <button class="primary" onclick="runBacktest()">▶ Run Backtest</button>
+  </div>
+  <div class="profile">
+    <div class="profile-left"><div class="rocket">✦</div><div><strong>AI Strategy Mentor</strong><p>Get structured feedback on your rules, sample size, risk and consistency.</p></div></div>
+    <button class="primary" onclick="openAIWith('Review my current backtesting plan')">Ask AI Mentor</button>
+  </div>
+  <div class="grid2">
+    <div class="section">
+      <h3>Strategy Setup</h3>
+      <div class="form-grid">
+        <label>Symbol<select id="btSymbol"><option>XAUUSD</option><option>NAS100</option><option>EURUSD</option><option>GBPUSD</option><option>BTCUSD</option></select></label>
+        <label>Timeframe<select id="btTf"><option>5M</option><option>15M</option><option>1H</option><option>4H</option><option>1D</option></select></label>
+        <label>Entry rule<input id="btEntry" value="Liquidity sweep + market structure shift"></label>
+        <label>Exit rule<input id="btExit" value="Target 2R / opposite liquidity"></label>
+        <label>Risk per trade<select id="btRisk"><option>0.25%</option><option selected>0.50%</option><option>1.00%</option><option>2.00%</option></select></label>
+        <label>Starting balance<input id="btBalance" type="number" value="5000"></label>
+      </div>
+      <button class="chip active" style="margin-top:12px" onclick="runBacktest()">Run simulation</button>
+    </div>
+    <div class="section">
+      <h3>AI Pre-Test Checklist</h3>
+      <div class="check"><span>✓</span> Entry and exit rules are defined</div>
+      <div class="check"><span>✓</span> Risk per trade is specified</div>
+      <div class="check warn"><span>!</span> Add at least 100 trades before trusting a sample</div>
+      <div class="check warn"><span>!</span> Test multiple market regimes</div>
+      <div class="check"><span>✓</span> Avoid changing rules after seeing results</div>
+    </div>
+  </div>
+  <div class="cards bt-kpis" style="margin-top:14px">
+    <div class="card kcard"><div class="label">Net P&L</div><div id="btPnl" class="value">+$1,260</div><div class="sub">Simulated</div></div>
+    <div class="card kcard"><div class="label">Win Rate</div><div id="btWin" class="value">58%</div><div class="sub">Winning trades</div></div>
+    <div class="card kcard"><div class="label">Profit Factor</div><div id="btPF" class="value">1.72</div><div class="sub">Gross profit / loss</div></div>
+    <div class="card kcard"><div class="label">Max Drawdown</div><div id="btDD" class="value">-6.4%</div><div class="sub">Peak to trough</div></div>
+  </div>
+  <div class="section">
+    <h3>Equity Curve <span style="float:right;color:#777">100 simulated trades</span></h3>
+    <div class="bt-chart"><canvas id="btCanvas"></canvas></div>
+  </div>
+  <div class="grid2">
+    <div class="section">
+      <h3>Trade Distribution</h3>
+      <div class="mini-bar"><span>Wins</span><i style="width:58%"></i><b>58</b></div>
+      <div class="mini-bar"><span>Losses</span><i style="width:42%"></i><b>42</b></div>
+      <div class="rowline"><span>Average R</span><b>+0.34R</b></div>
+      <div class="rowline"><span>Best trade</span><b>+3.2R</b></div>
+      <div class="rowline"><span>Worst trade</span><b>-1.0R</b></div>
+      <div class="rowline"><span>Longest losing streak</span><b>5</b></div>
+    </div>
+    <div class="section">
+      <h3>✦ AI Mentor Review</h3>
+      <div id="btMentor" class="mentor-card">
+        <b>Initial read</b>
+        <p>The simulated results show positive expectancy, but the sample and assumptions matter. Before using this strategy live, test it on unseen data and include spread, slippage and commissions.</p>
+        <button class="chip" onclick="openAIWith('Give me a detailed review of the backtest results')">Get detailed review →</button>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <h3>Backtest Rules & Evidence</h3>
+    <div class="stats-table">
+      <div class="row"><span>Out-of-sample period</span><b>Not configured</b></div>
+      <div class="row"><span>Transaction costs</span><b>Not configured</b></div>
+      <div class="row"><span>Slippage model</span><b>Not configured</b></div>
+      <div class="row"><span>Optimization</span><b>Off</b></div>
+      <div class="row"><span>Look-ahead protection</span><b>Enabled</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="bottom-help">♙</div><div class="footer-news">● NEWS　 🇺🇸 HCOB Eurozone Manufacturing PMI (Sep)　 08:00 AM　 ×</div>
+</div>
+
+<script>
+function openApp(){document.getElementById('landing').style.display='none';document.getElementById('shell').style.display='block';window.scrollTo(0,0)}
+const nav=document.querySelectorAll('.nav button[data-page]'), pages=document.querySelectorAll('.page');
+nav.forEach(b=>b.addEventListener('click',()=>{pages.forEach(p=>p.classList.add('hidden'));document.getElementById(b.dataset.page).classList.remove('hidden');nav.forEach(x=>x.classList.remove('active'));b.classList.add('active');window.scrollTo(0,0)}));
+const statNames=["Total P&L","Average daily volume","Average winning trade","Average losing trade","Total number of trades","Number of winning trades","Number of losing trades","Number of break even trades","Max consecutive wins","Max consecutive losses","Total commissions","Total swap","Largest profit","Largest loss","Avg hold time (All)","Avg hold time (Winners)","Avg hold time (Losers)","Open trades","Total trading days","Winning days","Losing days","Breakeven days","Max consecutive winning days","Max consecutive losing days","Average daily P&L","Average winning day P&L","Average losing day P&L","Largest profitable day","Largest losing day","Trade expectancy"];
+document.getElementById('statsRows').innerHTML=statNames.map(x=>`<div class="row"><span>${x}</span><b>${x.includes("time")||x.includes("days")?"—":x.includes("trades")||x.includes("days")?"0":"$0.00"}</b></div>`).join('');
+
+function toggleAI(){document.getElementById('aiMentor').classList.toggle('hidden')}
+function openAIWith(q){document.getElementById('aiMentor').classList.remove('hidden');askAI(q)}
+function addAI(text,who='bot'){const box=document.getElementById('aiMessages');const d=document.createElement('div');d.className='ai-msg '+(who==='user'?'user':'bot');d.innerHTML=who==='user'?text:'<b>TFB AI</b><br>'+text;box.appendChild(d);box.scrollTop=box.scrollHeight}
+function askAI(q){addAI(q,'user');setTimeout(()=>{let a='I would review the actual trade data before making a conclusion. Start with sample size, expectancy, drawdown, losing streaks, costs, and whether the rules were tested on unseen data.';if(/risk/i.test(q))a='Risk check: keep position size tied to a fixed percentage of account equity, define the invalidation point before entry, and check that a normal losing streak stays within your drawdown limit. I can calculate this from your inputs.';if(/backtest/i.test(q))a='Backtest review: the displayed simulation has positive expectancy, but it is only a demonstration. Validate it with out-of-sample data, realistic spread/slippage, and at least 100 trades before drawing conclusions.';if(/mistake|pattern/i.test(q))a='Pattern review: look for repeated entries after losses, rule changes, oversized positions, time-of-day clustering, and setups that perform differently across market regimes. Your journal should capture these fields.';if(/mentor/i.test(q))a='Mentor mode: I can act as a structured review partner — explain what the data says, point out uncertainty, and turn repeated mistakes into checklist rules. I will not pretend to know future market direction.';addAI(a)},350)}
+function sendAI(){const i=document.getElementById('aiInput');const q=i.value.trim();if(!q)return;i.value='';askAI(q)}
+function runBacktest(){const risk=parseFloat(document.getElementById('btRisk').value)||.5;const bal=parseFloat(document.getElementById('btBalance').value)||5000;const factor=risk/.5;const pnl=Math.round(1260*factor);document.getElementById('btPnl').textContent=(pnl>=0?'+$':'-$')+Math.abs(pnl).toLocaleString();document.getElementById('btWin').textContent=(58+Math.min(8,Math.max(-8,(factor-1)*2))).toFixed(0)+'%';document.getElementById('btPF').textContent=(1.72*factor).toFixed(2);document.getElementById('btDD').textContent='-'+(6.4*factor).toFixed(1)+'%';drawBT();document.getElementById('btMentor').innerHTML='<b>Updated review</b><p>Simulation recalculated using '+risk+'% risk on a $'+bal.toLocaleString()+' starting balance. Treat these numbers as illustrative until you connect real historical data and model trading costs.</p><button class="chip" onclick="openAIWith(\\'Review the updated backtest\\')">Ask AI →</button>'}
+function drawBT(){const c=document.getElementById('btCanvas');if(!c)return;const r=c.getBoundingClientRect(),d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const x=c.getContext('2d');x.scale(d,d);let w=r.width,h=r.height; x.clearRect(0,0,w,h);x.strokeStyle='#e8eaf0';x.lineWidth=1;for(let i=1;i<5;i++){x.beginPath();x.moveTo(0,h*i/5);x.lineTo(w,h*i/5);x.stroke()}let y=h*.78;x.beginPath();x.moveTo(0,y);for(let i=0;i<=100;i++){let v=(Math.sin(i*.33)*.05+Math.random()*.035+0.012);y=Math.max(18,Math.min(h-18,y-v*h*.85+(Math.random()-.48)*3));x.lineTo(w*i/100,y)}x.strokeStyle='#1559ee';x.lineWidth=2.5;x.stroke()}
+window.addEventListener('resize',drawBT);document.querySelector('[data-page="backtest"]')?.addEventListener('click',()=>setTimeout(drawBT,50));
+</script>
+</body>
+</html>
